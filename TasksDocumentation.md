@@ -264,8 +264,6 @@ while x == True:
     else:
         print("Invalid letter. Please, enter a single alphabetical character.")
         
-
-
 # %%
 
 # Task 2: Check whether the guess is in the word
@@ -503,7 +501,6 @@ def check_if_palindrome(list):
                 two = list.reverse()
                 print(two)
 
-
 # %%
 list= []
 word = "racecars"
@@ -555,5 +552,11 @@ ask_for_input(word_2)
 ask_for_input(word_3)
 ask_for_input(word_4)
 
+# %%
+
+# Task 4: Update your documentation
+
+# Milestone 3 scripts cleaned and uploaded into GitHub repo (https://github.com/chedongchan/AiCore_Milestones/)
+# Script file and Documentation updated, added, committed and pushed into github repo using the terminal.
 
 """
