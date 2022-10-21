@@ -206,6 +206,48 @@ else:
 
 # MILESTONE 3 #
 
+# Task 1: Iteratively check if the input is a valid guess
+
+x = True
+while x == True:
+    guess = input("Guess a letter in the word.")
+    if len(guess) == 1:
+        x = False
+        print(guess)
+    else:
+        print("Invalid letter. Please, enter a single alphabetical character.")
+        
+
+
+# %%
+
+# Task 2: Check whether the guess is in the word
+import random
+
+word_selection = ["Shenanigans","Bamboozle", "Bodacious", "Brouhaha", "Canoodle", "Gnarly", "Goggle", "Gubbins", "Malarkey", "Nincompoop" ]
+
+word_of_the_run = random.choice(word_selection).lower()
+
+# print(word_of_the_run)
+
+# Guess a letter in the randomly selected word.
+
+x= True
+while x== True:
+    guess = input("Guess a letter in the word. Use lowercase only..thank you")
+    if len(guess) == 1 and guess in word_of_the_run:
+        x = False
+        print("Good guess '{}' is in the word.".format(guess))
+    elif len(guess) != 1:
+        print("Invalid letter. Please, enter a single alphabetical character.")
+    else:
+        print("Sorry, '{}' is not in the word. Try again".format(guess))
+       
+
+# %%
+
+#Pre-requisite tasks
+
 # Void Functions
 
 def void_function():
@@ -427,7 +469,6 @@ for letter in word:
 
 #Task 3 - Create functions to run the checks   
 
-
 def check_guess(guess,word):
     x = True
     word = word.lower()
@@ -466,11 +507,5 @@ ask_for_input(word_1)
 ask_for_input(word_2)
 ask_for_input(word_3)
 ask_for_input(word_4)
-
-
-
-
-
-
 
 # %%
