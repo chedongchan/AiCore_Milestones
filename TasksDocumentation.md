@@ -239,7 +239,6 @@ else:
 - A: Recursive functions was a challenge to get my head around it. It still is rather difficult to understand. At the moment, I am using trial and error to find the script that works but I imagine I will eventually understand it well.
 
 ```Python
-
 """
 # %% 
 
@@ -414,10 +413,10 @@ def age_check(age):
         print("You must be over 12.")
 
 def email_check(email):
-    if re.search( "\w@\w",email) != None:
+    if re.search( '\w@\w',email) != None:
         return email
     else: 
-        return "invalid format -please try again"
+        print("invalid format -please try again")
 
 def profile_check(name,age,email):
     profile = []
@@ -494,6 +493,7 @@ def check_if_palindrome(list):
                 print(two)
 
 # %%
+
 list= []
 word = "racecars"
 for letter in word:
@@ -550,7 +550,6 @@ ask_for_input(word_4)
 
 # Milestone 3 scripts cleaned and uploaded into GitHub repo (https://github.com/chedongchan/AiCore_Milestones/)
 # Script file and Documentation updated, added, committed and pushed into github repo using the terminal.
-
 ```
 
 ## Milestone 4: Check if the guessed character is in the word
