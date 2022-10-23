@@ -13,7 +13,6 @@
 - Q: Why have you used those?
 - A: VS Code works as the text editor. MiniConda is a useful virtual environment generating software. Git is a version control system that allows  everyone to track changes, revert back to a previous (usually 'working' version), contribute towards a final product (main/master branch).
 
-
 ## Milestone 2: Create the variables for the game
 
 - Q: What have you developed within the environment?
@@ -21,7 +20,6 @@
 
 - Q: What utilities have you learnt this time?
 - A: I learnt to install pacakges in base and virtual environments for use. Importing modules that have useful functions embedded inside them.
-
 
 ```Python
 """
@@ -230,12 +228,7 @@ else:
 
 #Uploaded milestones and descriptions onto GitHub.
 
-#--------------------------------------------------
-
-"""
-
 ```
-
 
 ## Milestone 3: Check if the guessed character is in the word
 
@@ -244,7 +237,6 @@ else:
 
 - Q: What did I struggle with?
 - A: Recursive functions was a challenge to get my head around it. It still is rather difficult to understand. At the moment, I am using trial and error to find the script that works but I imagine I will eventually understand it well.
-
 
 ```Python
 
@@ -559,10 +551,7 @@ ask_for_input(word_4)
 # Milestone 3 scripts cleaned and uploaded into GitHub repo (https://github.com/chedongchan/AiCore_Milestones/)
 # Script file and Documentation updated, added, committed and pushed into github repo using the terminal.
 
-"""
-
 ```
-
 
 ## Milestone 4: Check if the guessed character is in the word
 
@@ -571,7 +560,6 @@ ask_for_input(word_4)
 
 - Q: What did I struggle with?
 - A: To understand exactly how classes work. How one can manipulate the initialised values from subsequent functions. However, with some trial and errors, and thinking about the logic of classes, I believe I have at least understood enough to make the script run- though I believe there should be a cleaner way to do this... For example, I am not sure if I am supposed to consistently refer to self._insert variable__ throughout the class. I am also not entirely sure why some variables are underscored with red error lines in the code. 
-
 
 ``` Python
 
@@ -725,7 +713,6 @@ class Hangman():
         return self.word_guessed
 
 # Task 5: Update your documentation.
-
 
 # %%
 # Test the Hangman Class and Game
