@@ -23,7 +23,7 @@
 - A: I learnt to install pacakges in base and virtual environments for use. Importing modules that have useful functions embedded inside them.
 
 
-```python
+```Python
 """
 # %%
 
@@ -246,7 +246,7 @@ else:
 - A: Recursive functions was a challenge to get my head around it. It still is rather difficult to understand. At the moment, I am using trial and error to find the script that works but I imagine I will eventually understand it well.
 
 
-```python
+```Python
 
 """
 # %% 
