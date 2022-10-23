@@ -158,6 +158,7 @@ rps("scissors", "scissors")
 
 #Example lines to import class/functions from modules.
 
+from math import pi
 from pickle import FALSE
 import pandas as pd
 from pandas import DataFrame
@@ -511,3 +512,48 @@ ask_for_input(word_4)
 
 # Milestone 3 scripts cleaned and uploaded into GitHub repo (https://github.com/chedongchan/AiCore_Milestones/)
 # Script file and Documentation updated, added, committed and pushed into github repo using the terminal.
+
+
+# %% 
+
+# Milestone 4: Create the Game class
+
+# Pre-requisite Content
+# Object Oriented Programming (OOP)
+# Create a 'Cylinder' Class
+
+class Cylinder():
+    
+    def __init__(self,height,radius=1):
+        self.radius= radius
+        self.height= height
+        self.surface_area = None
+        self.volume = None
+    
+    def get_surface_area(self):
+        pi = 3.14159
+        surface_area=(2 * pi * self.radius * self.height) + (2 * pi * self.radius ** 2)
+        surface_area = round(surface_area,2)
+        self.surface_area = surface_area
+        return self.surface_area
+
+    def get_volume(self):
+        pi = 3.14159
+        volume= pi *self.radius**2*self.height
+        volume = round(volume,2)
+        self.volume = volume
+        return self.volume
+
+x = Cylinder(1,5).get_surface_area()
+y= Cylinder(1,5).get_volume()
+print(x)
+print(y)
+
+# Not sure if I am understanding the assignment correctly here - step 5 states to initialise the surface area and volume to the values returned by th functions. How can I do this without overwriting SA and V?
+# Code seems to work as it is now. 
+# %%
+
+
+
+# Task 1: Create the Class
+
