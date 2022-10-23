@@ -553,7 +553,164 @@ print(y)
 # Code seems to work as it is now. 
 # %%
 
+# Milestone 4: Create the Game Class
 
+# Import modules required for this Class
 
 # Task 1: Create the Class
+
+import random
+import re
+
+# Task 1: Create the Class
+
+class Hangman():
+
+    # Initialise attributes in the first call of the instance. 
+    # Set default number of lives to 5, unless specified via argument input.
+    # Word_list argument taken in
+
+    def __init__(self,word_list,num_lives=5):
+
+        self.num_lives  = num_lives 
+        self.word_list = word_list
+        self.word = None
+        self.word_guessed = None
+        self.word_split = None
+        self.list_of_guesses= []
+    
+    # Randomly select a word from the word_list. Requires random module import.
+    # Assigns a random word from the word list to word variable.
+
+    def random_word(self):
+        self.word = random.choice(self.word_list).lower()
+        return self.word
+
+    # Creates a list of letters in the word assigned as word_split. 
+    # Creates a duplicate list of word_split but letters substituted by underscores
+
+    def word_guess_list(self):
+        length = len(self.word)
+        word_guess_list = []
+        word_split =[]
+        i = 0
+        while i < length:
+            word_guess_list.append("_")
+            word_split.append(self.word[i])
+            i +=1     
+        self.word_guessed = word_guess_list
+        self.word_split= word_split
+        return self.word_guessed
+    
+    # A function to find the number of unique characters in the word. 
+    # Used later to indicate to the user how many letters need to be correctly guessed to complete the word.
+
+    def num_letters(self):
+        
+        x = len(self.word_split)
+        j = 0
+        k = 0
+
+        while j < x:
+
+            for jj in range(j+1,x):
+                
+                if self.word_split[j] == self.word_split[jj]:
+                    k+=1 
+            j+=1
+
+        if k > 0:
+
+            print("There are {} unique letters in this list".format(x-k))
+
+        else: 
+            print("No match! Try again. {} unique letters left".format(x))
+
+        return        
+    # Task 2: Create methods for running the checks
+    # Asks user for input of a single character.
+    # Checks for invalid formats. 
+    # Calls the check_guess function if valid format is input.
+
+    def ask_for_input(self):
+        x= True
+        while x == True:
+            guess = input("Guess a letter in the word. Use lowercase only..thank you")
+            if guess == guess.capitalize():
+                print("Invalid letter. Please, enter a lowercase character.")
+            
+            elif re.search("!@£$%^&*()",guess) != None: 
+                print("invalid letter. Please, enter a single alphabetical character.") 
+
+            elif guess in self.list_of_guesses:
+                print("You already tried that letter!")
+
+            elif len(guess) != 1:
+                guess = print("Invalid letter. Please, enter a single alphabetical character.")
+
+            else:
+                
+                self.check_guess(guess)
+
+    # Checks the guessed letter against the word currently assinged.
+    # Returns output messages depending on successful or unsuccessful guess.
+    # Calls record function, which populates a string to indicate how many lives are left and a history of previous guesses.
+           
+    def check_guess(self,guess):
+        x = True
+        word = self.word.lower()
+        self.list_of_guesses.append(guess)
+        while x==True:
+
+            # Task 3: Define what happens if the letter is in the word.
+            if  guess in word:
+                print("Good guess '{}' is in the word.".format(guess))
+                self.new_list()
+                x = False
+
+            # Task 4: Define what happens if the letter is.     
+            else:
+                self.num_lives -=1
+                print("Sorry, '{}' is not in the word. Try again".format(guess))    
+                x = False
+    
+        print(self.word_guessed)
+        self.record()
+        
+    # Prints a message to indicate to the user what guesses have been tried before, and how many lives are left.
+                     
+    def record(self):
+        print("These are your guesses so far: {}".format(self.list_of_guesses), "You have {} guesses left.".format(self.num_lives))
+
+    # Upon correct guess, the hidden letters that match the guessed letter will be revealed from the word
+
+    def new_list(self):
+        i = 0
+        while i < len(self.list_of_guesses):
+            ii =0 
+            while ii < len(self.word_split):
+                if self.word_split[ii] == self.list_of_guesses[i]:
+                    self.word_guessed[ii] = self.list_of_guesses[i]
+                else:
+                    pass
+                
+                ii +=1
+            i +=1
+
+        return self.word_guessed
+
+# Task 5: Update your documentation.
+
+# %%
+# Test the Hangman Class and Game
+word_selection = ["Shenanigans","Bamboozle", "Bodacious", "Brouhaha", "Canoodle", "Gnarly", "Goggle", "Gubbins", "Malarkey", "Nincompoop" ]
+x = Hangman(word_selection)
+x.random_word()
+x.word_guess_list()
+x.num_letters()
+x.ask_for_input()
+print(x.list_of_guesses)
+print(x.word_guessed)
+print(x.word)
+print(x.word_split)
 

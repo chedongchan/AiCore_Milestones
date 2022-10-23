@@ -582,6 +582,8 @@ ask_for_input(word_4)
 
 # Import modules required for this Class
 
+# Task 1: Create the Class
+
 import random
 import re
 
@@ -650,7 +652,7 @@ class Hangman():
             print("No match! Try again. {} unique letters left".format(x))
 
         return        
-    
+    # Task 2: Create methods for running the checks
     # Asks user for input of a single character.
     # Checks for invalid formats. 
     # Calls the check_guess function if valid format is input.
@@ -678,29 +680,33 @@ class Hangman():
     # Checks the guessed letter against the word currently assinged.
     # Returns output messages depending on successful or unsuccessful guess.
     # Calls record function, which populates a string to indicate how many lives are left and a history of previous guesses.
-        
+           
     def check_guess(self,guess):
         x = True
         word = self.word.lower()
         self.list_of_guesses.append(guess)
         while x==True:
+
+            # Task 3: Define what happens if the letter is in the word.
             if  guess in word:
                 print("Good guess '{}' is in the word.".format(guess))
                 self.new_list()
                 x = False
-                
+
+            # Task 4: Define what happens if the letter is.     
             else:
                 self.num_lives -=1
                 print("Sorry, '{}' is not in the word. Try again".format(guess))    
                 x = False
+    
         print(self.word_guessed)
         self.record()
         
     # Prints a message to indicate to the user what guesses have been tried before, and how many lives are left.
-                    
+                     
     def record(self):
         print("These are your guesses so far: {}".format(self.list_of_guesses), "You have {} guesses left.".format(self.num_lives))
-    
+
     # Upon correct guess, the hidden letters that match the guessed letter will be revealed from the word
 
     def new_list(self):
@@ -718,11 +724,12 @@ class Hangman():
 
         return self.word_guessed
 
+# Task 5: Update your documentation.
+
+
 # %%
 # Test the Hangman Class and Game
-
 word_selection = ["Shenanigans","Bamboozle", "Bodacious", "Brouhaha", "Canoodle", "Gnarly", "Goggle", "Gubbins", "Malarkey", "Nincompoop" ]
-
 x = Hangman(word_selection)
 x.random_word()
 x.word_guess_list()
@@ -733,5 +740,6 @@ print(x.word_guessed)
 print(x.word)
 print(x.word_split)
 
-"""
 ```
+
+
