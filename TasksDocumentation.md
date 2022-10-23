@@ -414,7 +414,7 @@ def age_check(age):
         print("You must be over 12.")
 
 def email_check(email):
-    if re.search( '''\\w@\\w''',email) != None:
+    if re.search( "\w@\w",email) != None:
         return email
     else: 
         return "invalid format -please try again"
