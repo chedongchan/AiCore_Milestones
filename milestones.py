@@ -578,6 +578,8 @@ class Hangman():
         self.word_guessed = None
         self.word_split = None
         self.list_of_guesses= []
+        self.num_letters = None
+        self.correct_guesses=[]
     
     # Randomly select a word from the word_list. Requires random module import.
     # Assigns a random word from the word list to word variable.
@@ -600,14 +602,14 @@ class Hangman():
             i +=1     
         self.word_guessed = word_guess_list
         self.word_split= word_split
-        return self.word_guessed
     
     # A function to find the number of unique characters in the word. 
     # Used later to indicate to the user how many letters need to be correctly guessed to complete the word.
 
-    def num_letters(self):
+    def num_unique_letter(self):
         
         x = len(self.word_split)
+        correct_guess = len(self.correct_guesses)    
         j = 0
         k = 0
 
@@ -621,12 +623,13 @@ class Hangman():
 
         if k > 0:
 
-            print("There are {} unique letters in this list".format(x-k))
+            print("There are {} unique letters in this list".format(x-k-correct_guess))
 
         else: 
-            print("No match! Try again. {} unique letters left".format(x))
+            print("There are {} unique letters left".format(x-correct_guess))
 
-        return        
+        self.num_letters = x-k -correct_guess
+
     # Task 2: Create methods for running the checks
     # Asks user for input of a single character.
     # Checks for invalid formats. 
@@ -649,8 +652,8 @@ class Hangman():
                 guess = print("Invalid letter. Please, enter a single alphabetical character.")
 
             else:
-                
                 self.check_guess(guess)
+                x = False
 
     # Checks the guessed letter against the word currently assinged.
     # Returns output messages depending on successful or unsuccessful guess.
@@ -660,22 +663,29 @@ class Hangman():
         x = True
         word = self.word.lower()
         self.list_of_guesses.append(guess)
+
         while x==True:
 
             # Task 3: Define what happens if the letter is in the word.
             if  guess in word:
                 print("Good guess '{}' is in the word.".format(guess))
+                self.correct_guesses.append(guess)
                 self.new_list()
-                x = False
+                x= False
+                
+                
 
             # Task 4: Define what happens if the letter is.     
             else:
                 self.num_lives -=1
                 print("Sorry, '{}' is not in the word. Try again".format(guess))    
                 x = False
+                
     
         print(self.word_guessed)
         self.record()
+        self.num_unique_letter()
+        
         
     # Prints a message to indicate to the user what guesses have been tried before, and how many lives are left.
                      
@@ -702,15 +712,55 @@ class Hangman():
 # Task 5: Update your documentation.
 
 # %%
-# Test the Hangman Class and Game
-word_selection = ["Shenanigans","Bamboozle", "Bodacious", "Brouhaha", "Canoodle", "Gnarly", "Goggle", "Gubbins", "Malarkey", "Nincompoop" ]
-x = Hangman(word_selection)
-x.random_word()
-x.word_guess_list()
-x.num_letters()
-x.ask_for_input()
-print(x.list_of_guesses)
-print(x.word_guessed)
-print(x.word)
-print(x.word_split)
+
+# Milestone 5: Putting it all together
+
+# Task 1: Code the logic of the game
+
+def play_game():
+    word_list = ["apple","lychee", "mangosteen", "clementine","grape"]
+    game = Hangman(word_list)
+    game.random_word()
+    game.word_guess_list()
+    game.num_unique_letter()
+
+    p = True
+    while p == True:
+        if game.num_letters > 0 and game.num_lives > 0: 
+            game.ask_for_input()
+            
+            
+
+        elif game.num_lives == 0:
+            print("You lost!")
+            p = False
+
+        elif game.num_lives > 0 and game.num_letters == 0:
+            print("You won the game!")
+            p = False
+
+        
+
+        else:
+            break
+        
+play_game()
+
+# Task 2: Define play_game function.
+
+# Logic: 
+# 1. Set a variable called Word_list inside the function (in the future, this can be an argument for the function instead...)
+# 2. Call an instance of Hangman using the word_list as the input argument. Number of lives are set to 5 as default.
+# 3. Call the random_word() function to randomly select a word from word_list.
+# 4. Call the word_guess_list() function, which generates two lists. The first one sequentially stores each letter per index of the list. The second is the 'hidden behind underscores' version of the same list.
+# 5. Call the num_unique_letter() function, which generates a print statement based on how many remaining unique letters the player has to guess.
+# 6. While loop that continues until the condition is set to False, contains conditional if statements that either keep the loop condition true or false:
+#   a) Calls the ask_for_input() function if both number of unique letters and number of lives are greater than 0. 
+#   b) If number of lives reach 0, set loop condition to be False, printing out "You lost!" message, and ending the game.
+#   c) If number of lives is greater than 0 but no more unique letters exist (every letter guessed!), then set loop condition to be False, printing out "You won the game!" message, and ending the game.
+# 7. Call the function outside. 
+
+
+
+
 

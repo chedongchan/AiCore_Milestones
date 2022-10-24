@@ -728,4 +728,63 @@ print(x.word_split)
 
 ```
 
+## Milestone 5: Putting it all together.
+
+- Q: What utilities have you learnt this time?
+- A: In this milestone, I have learnt to simplify each function to do one task (if possible) and then place them under a single function that follows a overarching logic gate required for the Hangman game. 
+
+- Q: What did I struggle with?
+- A: There were many while loops within the code, which meant that when putting all the functions together, I got lost which loop was not being broken in order for the code to proceed to the next line. After some troubleshooting, such as setting the conditions False from the very beginning, I was able to narrow down the culprit to a single while loop. Turn out, my last while loop conditional IF statements were not in the right order. 
+
+``` Python
+"""
+# %%
+
+# Milestone 5: Putting it all together
+
+# Task 1: Code the logic of the game
+
+def play_game():
+    word_list = ["apple","lychee", "mangosteen", "clementine","grape"]
+    game = Hangman(word_list)
+    game.random_word()
+    game.word_guess_list()
+    game.num_unique_letter()
+
+    p = True
+    while p == True:
+        if game.num_letters > 0 and game.num_lives > 0: 
+            game.ask_for_input()
+            
+            
+
+        elif game.num_lives == 0:
+            print("You lost!")
+            p = False
+
+        elif game.num_lives > 0 and game.num_letters == 0:
+            print("You won the game!")
+            p = False
+
+        
+
+        else:
+            break
+        
+play_game()
+
+# Task 2: Define play_game function.
+
+# Logic: 
+# 1. Set a variable called Word_list inside the function (in the future, this can be an argument for the function instead...)
+# 2. Call an instance of Hangman using the word_list as the input argument. Number of lives are set to 5 as default.
+# 3. Call the random_word() function to randomly select a word from word_list.
+# 4. Call the word_guess_list() function, which generates two lists. The first one sequentially stores each letter per index of the list. The second is the 'hidden behind underscores' version of the same list.
+# 5. Call the num_unique_letter() function, which generates a print statement based on how many remaining unique letters the player has to guess.
+# 6. While loop that continues until the condition is set to False, contains conditional if statements that either keep the loop condition true or false:
+#   a) Calls the ask_for_input() function if both number of unique letters and number of lives are greater than 0. 
+#   b) If number of lives reach 0, set loop condition to be False, printing out "You lost!" message, and ending the game.
+#   c) If number of lives is greater than 0 but no more unique letters exist (every letter guessed!), then set loop condition to be False, printing out "You won the game!" message, and ending the game.
+# 7. Call the function outside. 
+
 
